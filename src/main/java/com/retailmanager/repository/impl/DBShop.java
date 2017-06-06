@@ -26,7 +26,7 @@ public class DBShop implements ShopRepo {
     }
 
     public List<Shop> getShops() {
-        return new ArrayList<Shop>(shops.values());
+        return new ArrayList<>(shops.values());
     }
 
     public Shop createShop(Shop shop) {

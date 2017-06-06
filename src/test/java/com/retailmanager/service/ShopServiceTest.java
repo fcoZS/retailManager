@@ -1,27 +1,26 @@
-package com.retailmanager.endpoints;
+package com.retailmanager.service;
 
 import com.retailmanager.entities.Shop;
-import com.retailmanager.service.ShopService;
+import com.retailmanager.repository.ShopRepo;
+import com.retailmanager.service.impl.ShopServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
-
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShopEndpointTest {
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
+public class ShopServiceTest {
     @InjectMocks
-    private ShopEndpoint shopEndpoint;
+    private ShopServiceImpl shopServiceImpl;
 
     @Mock
-    private ShopService shopService;
+    private ShopRepo shopRepo;
 
     @Before
     public void init() {
@@ -34,11 +33,10 @@ public class ShopEndpointTest {
         shop.setName("testShop");
         List<Shop> shopList = new ArrayList<>();
         shopList.add(shop);
-        when(shopService.getShops()).thenReturn(shopList);
+        when(shopRepo.getShops()).thenReturn(shopList);
 
-        List<Shop> shops = shopEndpoint.getShops();
+        List<Shop> shops = shopServiceImpl.getShops();
         assertEquals(1, shops.size());
         assertEquals("testShop", shops.get(0).getName());
     }
-
 }
