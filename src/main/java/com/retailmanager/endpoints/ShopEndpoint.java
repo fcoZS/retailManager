@@ -19,17 +19,17 @@ public class ShopEndpoint {
     @Autowired
     private GoogleMapsService googleMapsService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "shops")
+    @GetMapping("shops")
     public List<Shop> getShops() {
         return shopService.getShops();
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "shops")
+    @PostMapping("shops")
     public Shop createShop(@RequestBody Shop shop) {
         return shopService.createShop(shop);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "shop/{latitude}/{longitude}")
+    @GetMapping("shop/{latitude}/{longitude}")
     public void getShopByLocation(@PathVariable double latitude, @PathVariable double longitude) {
         googleMapsService.searchByLocation(latitude, longitude);
     }
